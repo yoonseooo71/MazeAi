@@ -3,7 +3,10 @@ const theme = {
     background: "#222831",
     turquoise: "#00ADB5" ,
     gray : "#EEEEEE",
-    white: "#FFFFFF"
+    white: "#FFFFFF",
+    green: "#539165",
+    yellow: "#F7C04A",
+    red: "#E96479"
   }
 
 };

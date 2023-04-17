@@ -2,6 +2,20 @@ import styled from "styled-components";
 import Text from "./components/Text";
 import CompleteBtn from "./components/CompleteBtn";
 function App() {
+  const nodeColor = {
+    "S": "green",
+    "E": "yellow",
+    "W": "red",
+    "R": "white"
+  }
+  const paret =[
+    "S","W","R","R","R","R",
+    "R","R","R","R","R","R",
+    "R","W","R","R","R","R",
+    "R","R","R","W","R","R",
+    "R","R","R","R","R","R",
+    "R","R","R","R","R","E"
+  ]
   return (
     <Background>
       <Text size="96px" color="turquoise">
@@ -14,42 +28,7 @@ function App() {
           </Text>
         </TextBox>
         <Paret>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
-          <Node color="white"></Node>
+          {paret.map((element,index)=><Node color={nodeColor[element]} key={index} id={index} onClick={(e)=>{console.log(e.target.id)}}/>)}
         </Paret>
         <CompleteBtn />
       </Main>
