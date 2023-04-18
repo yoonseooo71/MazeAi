@@ -17,5 +17,8 @@ const Wrapper = styled.div`
   align-items: center;
   align-self: flex-end;
   margin-top: 20px;
+  :hover {
+    border: ${({theme})=>theme.colors.gray} 2px solid;
+  }
 `
 export default CompleteBtn ; 

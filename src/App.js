@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import Text from "./components/Text";
 import CompleteBtn from "./components/CompleteBtn";
+import { useState } from "react";
+import BalloonPop from "./components/BalloonPop";
 function App() {
+  const [isPop,setIsPop] = useState(false); 
+  const [popLocation,setPopLocation] = useState(undefined); 
   const nodeColor = {
     "S": "green",
     "E": "yellow",
@@ -16,8 +20,13 @@ function App() {
     "R","R","R","R","R","R",
     "R","R","R","R","R","E"
   ]
+  const nodeClickHandler=(e)=>{
+    setIsPop(true) ;
+    setPopLocation({left: e.clientX,top: e.clientY})
+  }
   return (
     <Background>
+      {isPop && <BalloonPop location={popLocation} closePop={()=>{setIsPop(false)}}/>}
       <Text size="96px" color="turquoise">
         Maze AI
       </Text>
@@ -28,7 +37,7 @@ function App() {
           </Text>
         </TextBox>
         <Paret>
-          {paret.map((element,index)=><Node color={nodeColor[element]} key={index} id={index} onClick={(e)=>{console.log(e.target.id)}}/>)}
+          {paret.map((element,index)=><Node color={nodeColor[element]} key={index} id={index} onClick={nodeClickHandler}/>)}
         </Paret>
         <CompleteBtn />
       </Main>
