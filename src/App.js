@@ -6,27 +6,32 @@ import BalloonPop from "./components/BalloonPop";
 function App() {
   const [isPop,setIsPop] = useState(false); 
   const [popLocation,setPopLocation] = useState(undefined); 
+  const [paret,setParet] = useState([ //R:빈칸(road),S:시작(start),E:도착(end),W:벽(wall)
+    "R","R","R","R","R","R",
+    "R","R","R","R","R","R",
+    "R","R","R","R","R","R",
+    "R","R","R","R","R","R",
+    "R","R","R","R","R","R",
+    "R","R","R","R","R","R"
+  ]);
   const nodeColor = {
     "S": "green",
     "E": "yellow",
     "W": "red",
     "R": "white"
   }
-  const paret =[
-    "S","W","R","R","R","R",
-    "R","R","R","R","R","R",
-    "R","W","R","R","R","R",
-    "R","R","R","W","R","R",
-    "R","R","R","R","R","R",
-    "R","R","R","R","R","E"
-  ]
-  const nodeClickHandler=(e)=>{
+  const nodeClickHandler=(e)=>{ //노드 타입 설정하는 팝업띄우는 핸들러
     setIsPop(true) ;
-    setPopLocation({left: e.clientX,top: e.clientY})
+    setPopLocation({left: e.clientX,top: e.clientY,id:e.target.id})
+  }
+  const nodeSetting=(type,index)=>{ //노드 타입 설정하는 함수 (노드타입,변경위치)
+    const temp = [...paret] ;
+    temp[index] = type ; 
+    setParet(temp) ;  
   }
   return (
     <Background>
-      {isPop && <BalloonPop location={popLocation} closePop={()=>{setIsPop(false)}}/>}
+      {isPop && <BalloonPop location={popLocation} closePop={()=>{setIsPop(false)}} nodeSetting={nodeSetting}/>}
       <Text size="96px" color="turquoise">
         Maze AI
       </Text>

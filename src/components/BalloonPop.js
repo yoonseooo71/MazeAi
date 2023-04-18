@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
-const BalloonPop = ({location, closePop}) => {
+const BalloonPop = ({location, closePop, nodeSetting}) => {
   return(
-    <Wrapper top={location.top} left={location.left} onMouseLeavet={closePop}>
+    <Wrapper top={location.top} left={location.left} onMouseLeave={closePop}>
       <Row>
-        <TypeBtn color="green">시작</TypeBtn>
-        <TypeBtn color="yellow">도착</TypeBtn>
+        <TypeBtn color="green" onClick={()=>nodeSetting("S",location.id)}>시작</TypeBtn>
+        <TypeBtn color="yellow" onClick={()=>nodeSetting("E",location.id)}>도착</TypeBtn>
       </Row>
       <Row>
-        <TypeBtn color="red">벽</TypeBtn>
-        <TypeBtn color="white">빈칸</TypeBtn>
+        <TypeBtn color="red" onClick={()=>nodeSetting("W",location.id)}>벽</TypeBtn>
+        <TypeBtn color="white" onClick={()=>nodeSetting("R",location.id)}>빈칸</TypeBtn>
       </Row>
     </Wrapper>
   )
@@ -48,6 +48,7 @@ const TypeBtn = styled.div`
   align-items: center;
   font-weight: bold;
   margin: 10px;
+  cursor: pointer;
 `
 const Row = styled.div`
 
