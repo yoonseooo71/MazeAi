@@ -8,7 +8,7 @@ export default function findRoad([...paret]) {
     if (element === "S") start = index;
     else if (element === "E") end = index;
   });
-  if(start=== undefined || end===undefined) return false
+  if(start=== undefined || end===undefined) return "is not start or end";
   paret[start] = 1;
   let queue = [start];
   while (queue.length!==0) {
@@ -30,7 +30,7 @@ export default function findRoad([...paret]) {
     }
     if (breakKey) break;
   }
-  if (paret[end]==="E") return false; //길이 없을때 
+  if (paret[end]==="E") return "don't find way"; //길이 없을때 
   const route = [end];
   queue = [end];
   while (queue.length!==0) {

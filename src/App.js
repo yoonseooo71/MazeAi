@@ -30,6 +30,16 @@ function App() {
     temp[index] = type ; 
     setParet(temp) ;  
   }
+  const completeBtnClick=()=>{
+    const result = findRoad(paret); 
+    if (result === "is not start or end") {
+      alert("is not start or end");
+    } else if(result === "don't find way") {
+      alert("don't find way");
+    } else {
+      console.log(result);
+    }
+  }
   return (
     <Background>
       {isPop && <BalloonPop location={popLocation} closePop={()=>{setIsPop(false)}} nodeSetting={nodeSetting}/>}
@@ -45,7 +55,7 @@ function App() {
         <Paret>
           {paret.map((element,index)=><Node color={nodeColor[element]} key={index} id={index} onClick={nodeClickHandler}/>)}
         </Paret>
-        <CompleteBtn />
+        <CompleteBtn clickHandler={completeBtnClick}/>
       </Main>
     </Background>
   );

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Text from "./Text";
-const CompleteBtn = ()=>{
+const CompleteBtn = ({clickHandler})=>{
   return (
-    <Wrapper> 
+    <Wrapper onMouseDown={clickHandler}> 
       <Text size="32px" color="gray">완료</Text>
     </Wrapper>
   )
@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   align-items: center;
   align-self: flex-end;
   margin-top: 20px;
+  cursor: pointer;
   :hover {
     border: ${({theme})=>theme.colors.gray} 2px solid;
   }
