@@ -1,4 +1,4 @@
-export default function findRoad(paret) {
+export default function findRoad([...paret]) {
   const [width, height] = [6, 6];
   const moves = [1, -1, width, -width];
   const check = { 1: [1, 0], "-1": [-1, 0], 6: [0, 1], "-6": [0, -1] };
@@ -8,14 +8,15 @@ export default function findRoad(paret) {
     if (element === "S") start = index;
     else if (element === "E") end = index;
   });
+  if(start=== undefined || end===undefined) return false
   paret[start] = 1;
   let queue = [start];
   while (queue.length!==0) {
     let breakKey = false;
     const node = queue.shift();
     for (let move of moves) {
-      if (0 <= (node % width) + check[move][0] && (node % width) + check[move][0] < width) { //가로 범위 벗어나는지 체크 
-        if (0 <= parseInt(node / width) + check[move][1] &&0 <= parseInt(node / width) + check[move][1] < height) {//세로 범위 벗어나는지 체크 
+      if ((0 <= (node % width) + check[move][0])&&((node % width) + check[move][0] < width)) { //가로 범위 벗어나는지 체크 
+        if ((0 <= parseInt(node / width) + check[move][1] )&&(parseInt(node / width) + check[move][1] < height)) {//세로 범위 벗어나는지 체크 
           if (paret[node + move] === "R" || paret[node + move] === "E") { //길 또는 도착지점인지 체크 
             paret[node + move] = paret[node] + 1;
             queue.push(node + move);
@@ -35,8 +36,8 @@ export default function findRoad(paret) {
   while (queue.length!==0) {
     const node = queue.shift();
     for (let move of moves) {
-      if (0 <= (node % width) + check[move][0] && (node % width) + check[move][0] < width) {
-        if (0 <= parseInt(node / width) + check[move][1] &&0 <= parseInt(node / width) + check[move][1] < height) {
+      if ((0 <= (node % width) + check[move][0]) && ((node % width) + check[move][0] < width)) {
+        if ((0 <= parseInt(node / width) + check[move][1]) &&(parseInt(node / width) + check[move][1] < height)) {
           if (paret[node + move] < paret[node]) {
             queue.push(node + move);
             route.unshift(node + move);

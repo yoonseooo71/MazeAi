@@ -3,6 +3,7 @@ import Text from "./components/Text";
 import CompleteBtn from "./components/CompleteBtn";
 import { useState } from "react";
 import BalloonPop from "./components/BalloonPop";
+import findRoad from "./lib/findRoad";
 function App() {
   const [isPop,setIsPop] = useState(false); 
   const [popLocation,setPopLocation] = useState(undefined); 
