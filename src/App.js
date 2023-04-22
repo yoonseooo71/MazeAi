@@ -19,7 +19,8 @@ function App() {
     "S": "green",
     "E": "yellow",
     "W": "red",
-    "R": "white"
+    "R": "white",
+    "way": "lightGreen"
   }
   const nodeClickHandler=(e)=>{ //노드 타입 설정하는 팝업띄우는 핸들러
     setIsPop(true) ;
@@ -30,7 +31,7 @@ function App() {
     temp[index] = type ; 
     setParet(temp) ;  
   }
-  const completeBtnClick=()=>{
+  const completeBtnClick=()=>{ //길찾고 결과 띄우기
     const result = findRoad(paret); 
     if (result === "is not start or end") {
       alert("is not start or end");
@@ -38,6 +39,11 @@ function App() {
       alert("don't find way");
     } else {
       console.log(result);
+      const temp = [...paret] ; 
+      result.forEach((node)=>{
+        temp[node] = "way"
+      })
+      setParet(temp);
     }
   }
   return (
