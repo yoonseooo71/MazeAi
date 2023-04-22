@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import Text from "./components/Text";
 import CompleteBtn from "./components/CompleteBtn";
+import ResetBtn from "./components/ResetBtn";
 import { useState } from "react";
 import BalloonPop from "./components/BalloonPop";
 import findRoad from "./lib/findRoad";
 function App() {
   const [isPop,setIsPop] = useState(false); 
+  const [isResult,setIsResult] = useState(false);
   const [popLocation,setPopLocation] = useState(undefined); 
-  const [paret,setParet] = useState([ //R:빈칸(road),S:시작(start),E:도착(end),W:벽(wall)
+  const [paret,setParet] = useState([ //R:빈칸(road),S:시작(start),E:도착(end),W:벽(wall),way:미로길
     "R","R","R","R","R","R",
     "R","R","R","R","R","R",
     "R","R","R","R","R","R",
@@ -23,8 +25,12 @@ function App() {
     "way": "lightGreen"
   }
   const nodeClickHandler=(e)=>{ //노드 타입 설정하는 팝업띄우는 핸들러
-    setIsPop(true) ;
-    setPopLocation({left: e.clientX,top: e.clientY,id:e.target.id})
+    if (!isResult) {
+      setIsPop(true) ;
+      setPopLocation({left: e.clientX,top: e.clientY,id:e.target.id})
+    } else {
+      alert("pleas click reset button");
+    }
   }
   const nodeSetting=(type,index)=>{ //노드 타입 설정하는 함수 (노드타입,변경위치)
     const temp = [...paret] ;
@@ -44,7 +50,19 @@ function App() {
         temp[node] = "way"
       })
       setParet(temp);
+      setIsResult(true);
     }
+  }
+  const resetBtnClick=()=>{
+    setParet([
+    "R","R","R","R","R","R",
+    "R","R","R","R","R","R",
+    "R","R","R","R","R","R",
+    "R","R","R","R","R","R",
+    "R","R","R","R","R","R",
+    "R","R","R","R","R","R"
+  ]);
+  setIsResult(false);
   }
   return (
     <Background>
@@ -61,7 +79,7 @@ function App() {
         <Paret>
           {paret.map((element,index)=><Node color={nodeColor[element]} key={index} id={index} onClick={nodeClickHandler}/>)}
         </Paret>
-        <CompleteBtn clickHandler={completeBtnClick}/>
+        {!isResult ? <CompleteBtn clickHandler={completeBtnClick}/> : <ResetBtn clickHandler={resetBtnClick}/>}
       </Main>
     </Background>
   );
