@@ -41,8 +41,8 @@ function App() {
     const result = findRoad(paret); 
     if (result === "is not start or end") {
       alert("is not start or end");
-    } else if(result === "don't find way") {
-      alert("don't find way");
+    } else if(result === "can't find way") {
+      alert("can't find way");
     } else {
       console.log(result);
       const temp = [...paret] ; 

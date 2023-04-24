@@ -30,7 +30,7 @@ export default function findRoad([...paret]) {
     }
     if (breakKey) break;
   }
-  if (paret[end]==="E") return "don't find way"; //길이 없을때 
+  if (paret[end]==="E") return "can't find way"; //길이 없을때 
   const route = [end];
   queue = [end];
   while (queue.length!==0) {
