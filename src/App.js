@@ -6,17 +6,18 @@ import { useState } from "react";
 import BalloonPop from "./components/BalloonPop";
 import findRoad from "./lib/findRoad";
 function App() {
-  const [isPop,setIsPop] = useState(false); 
-  const [isResult,setIsResult] = useState(false);
-  const [popLocation,setPopLocation] = useState(undefined); 
-  const [paret,setParet] = useState([ //R:빈칸(road),S:시작(start),E:도착(end),W:벽(wall),way:미로길
+  const firstParet = [ //R:빈칸(road),S:시작(start),E:도착(end),W:벽(wall),way:미로길
     "R","R","R","R","R","R",
     "R","R","R","R","R","R",
     "R","R","R","R","R","R",
     "R","R","R","R","R","R",
     "R","R","R","R","R","R",
     "R","R","R","R","R","R"
-  ]);
+  ] 
+  const [isPop,setIsPop] = useState(false); 
+  const [isResult,setIsResult] = useState(false);
+  const [popLocation,setPopLocation] = useState(undefined); 
+  const [paret,setParet] = useState(firstParet);
   const nodeColor = {
     "S": "green",
     "E": "yellow",
@@ -54,14 +55,7 @@ function App() {
     }
   }
   const resetBtnClick=()=>{
-    setParet([
-    "R","R","R","R","R","R",
-    "R","R","R","R","R","R",
-    "R","R","R","R","R","R",
-    "R","R","R","R","R","R",
-    "R","R","R","R","R","R",
-    "R","R","R","R","R","R"
-  ]);
+    setParet(firstParet);
   setIsResult(false);
   }
   return (
